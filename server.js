@@ -130,7 +130,7 @@ app.get('/health', (req, res) => {
   res.json({
     status: 'ok',
     service: 'emercoin-mcp-server',
-    version: '2.0.0',
+    version: require('./package.json').version,
     timestamp: new Date().toISOString(),
     endpoints: Object.keys(EMERCOIN_ENDPOINTS).length
   });
@@ -402,7 +402,7 @@ app.use((err, req, res, next) => {
 
 // Start server
 app.listen(CONFIG.port, () => {
-  console.log(`Emercoin MCP Server v0.2.1 running on port ${CONFIG.port}`);
+  console.log(`Emercoin MCP Server v${require('./package.json').version} running on port ${CONFIG.port}`);
   console.log(`Using emercoin-cli at: ${CONFIG.emercoinCliPath}`);
   console.log(`RPC Host: ${CONFIG.rpcHost}:${CONFIG.rpcPort}`);
   console.log(`Available endpoints: ${Object.keys(EMERCOIN_ENDPOINTS).length}`);
